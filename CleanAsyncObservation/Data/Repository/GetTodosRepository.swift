@@ -21,11 +21,6 @@ class GetTodosRepository: TodosDataSource {
         self.todosLocalDataSource = todosLocalDataSource
     }
     
-    func refreshTodos() async throws {
-        let remoteTodos = try await todosRemoteDataSource.fetchTodos()
-        todos.send(remoteTodos)
-    }
-    
     func getTodos() async throws {
         do {
             let localTodos = try await todosLocalDataSource.queryTodos()
@@ -42,5 +37,10 @@ class GetTodosRepository: TodosDataSource {
         } catch {
             try await refreshTodos()
         }
+    }
+    
+    func refreshTodos() async throws {
+        let remoteTodos = try await todosRemoteDataSource.fetchTodos()
+        todos.send(remoteTodos)
     }
 }
