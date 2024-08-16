@@ -1,18 +1,19 @@
 //
-//  TodosViewModel.swift
-//  CleanObservation
+//  CompletedTodosViewModel.swift
+//  CleanAsyncObservation
 //
-//  Created by Ces Mejia on 14/08/24.
+//  Created by Ces Mejia on 16/08/24.
 //
 
 import Foundation
 import Combine
 
 @MainActor
-@Observable class TodosViewModel {
+@Observable class CompletedTodosViewModel {
     private let getTodosUseCase: GetTodosUseCase
-    weak var delegate: TodosViewActions?
+    weak var delegate: CompletedTodosViewActions?
     
+    let title = "Completed"
     var todos = [Todo]()
     var errorText: String?
     
@@ -20,7 +21,7 @@ import Combine
     
     init(
         getTodosUseCase: GetTodosUseCase,
-        delegate: TodosViewActions?
+        delegate: CompletedTodosViewActions?
     ) {
         self.getTodosUseCase = getTodosUseCase
         self.delegate = delegate
@@ -29,7 +30,7 @@ import Combine
             .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] todos in
-                self.todos = todos
+                self.todos = todos.filter(\.completed)
             }).store(in: &cancellables)
     }
     
@@ -55,6 +56,7 @@ import Combine
 }
 
 @MainActor
-protocol TodosViewActions: AnyObject {
+protocol CompletedTodosViewActions: AnyObject {
     func todoRowTapped(for todo: Todo)
 }
+

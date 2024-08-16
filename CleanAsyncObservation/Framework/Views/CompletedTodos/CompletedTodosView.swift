@@ -1,14 +1,14 @@
 //
-//  TodosView.swift
-//  CleanObservation
+//  CompletedTodosView.swift
+//  CleanAsyncObservation
 //
-//  Created by Ces Mejia on 14/08/24.
+//  Created by Ces Mejia on 16/08/24.
 //
 
 import SwiftUI
 
-struct TodosView: View {
-    let viewModel: TodosViewModel
+struct CompletedTodosView: View {
+    let viewModel: CompletedTodosViewModel
     
     var body: some View {
         List {
@@ -26,7 +26,7 @@ struct TodosView: View {
                 
             }
         }
-        .navigationTitle("Todos")
+        .navigationTitle(viewModel.title)
         .onViewDidLoadTask {
             await viewModel.getTodos()
         }
@@ -35,9 +35,10 @@ struct TodosView: View {
 
 #Preview {
     let factory = HomeFactoryImp()
-    let todo = Todo(userId: 1, id: 1, title: "Hello", completed: false)
-    let todosDataSource = TodosDataSourceStub(result: .success([todo]))
-    let view = factory.makeTodosView(getTodosSource: todosDataSource, delegate: nil)
+    let todo1 = Todo(userId: 1, id: 1, title: "Hello", completed: false)
+    let todo2 = Todo(userId: 2, id: 2, title: "Hello", completed: true)
+    let todosDataSource = TodosDataSourceStub(result: .success([todo1, todo2]))
+    let view = factory.makeCompletedTodosView(getTodosSource: todosDataSource, delegate: nil)
     return NavigationView {
         view
     }

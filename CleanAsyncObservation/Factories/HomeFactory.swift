@@ -43,4 +43,11 @@ struct HomeFactoryImp: HomeFactory {
         let view = TodoDetailsView(viewModel: detailsViewModel)
         return view
     }
+    
+    func makeCompletedTodosView(getTodosSource: TodosDataSource, delegate: CompletedTodosViewActions?) -> CompletedTodosView {
+        let getTodosUseCase = GetTodosUseCase(todosDataSource: getTodosSource)
+        let completedTodosViewModel = CompletedTodosViewModel(getTodosUseCase: getTodosUseCase, delegate: delegate)
+        let view = CompletedTodosView(viewModel: completedTodosViewModel)
+        return view
+    }
 }
