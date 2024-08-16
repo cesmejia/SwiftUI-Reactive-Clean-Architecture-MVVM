@@ -28,6 +28,7 @@ struct TodoDetailsView: View {
                 Text(viewModel.todo.completed ? "Completed" : "Not Completed")
             }
         }
+        .navigationTitle(viewModel.title)
     }
 }
 

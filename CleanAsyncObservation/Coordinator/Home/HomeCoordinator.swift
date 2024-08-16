@@ -17,7 +17,7 @@ final class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = homeFactory.makeModule()
+        let controller = homeFactory.makeModule(delegate: self)
         navigation.navigationBar.prefersLargeTitles = true
         navigation.pushViewController(controller, animated: true)
     }
@@ -25,5 +25,11 @@ final class HomeCoordinator: Coordinator {
     private func navigateToDetail(for todo: Todo) {
         let controller = homeFactory.makeTodoDetails(with: todo)
         navigation.pushViewController(controller, animated: true)
+    }
+}
+
+extension HomeCoordinator: TodosViewActions {
+    func todoRowTapped(for todo: Todo) {
+        navigateToDetail(for: todo)
     }
 }

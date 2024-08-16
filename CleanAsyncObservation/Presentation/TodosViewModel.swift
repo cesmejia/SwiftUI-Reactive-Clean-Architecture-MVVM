@@ -54,6 +54,7 @@ import Combine
     }
 }
 
+@MainActor
 protocol TodosViewActions: AnyObject {
     func todoRowTapped(for todo: Todo)
 }

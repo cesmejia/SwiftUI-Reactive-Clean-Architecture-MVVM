@@ -9,6 +9,7 @@ import Foundation
 
 @MainActor
 @Observable class TodoDetailsViewModel {
+    let title = "Details"
     var todo: Todo
     
     init(
