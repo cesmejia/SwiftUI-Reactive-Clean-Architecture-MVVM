@@ -27,7 +27,7 @@ struct TodosView: View {
             }
         }
         .navigationTitle("Todos")
-        .task {
+        .onViewDidLoadTask {
             await viewModel.getTodos()
         }
     }
