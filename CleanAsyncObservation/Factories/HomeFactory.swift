@@ -20,16 +20,27 @@ struct HomeFactoryImp: HomeFactory {
         let todosDataSourceRemote = TodosRemoteDataGateway(todosService: todosService, todosDatabase: todosDatabase)
         let todosDataSourceLocal = TodosLocalDataGateway(todosDatabase: todosDatabase)
         let getTodosSource = GetTodosRepository(todosRemoteDataSource: todosDataSourceRemote, todosLocalDataSource: todosDataSourceLocal)
-        let getTodosUseCase = GetTodosUseCase(todosDataSource: getTodosSource)
-        let todosViewModel = TodosViewModel(getTodosUseCase: getTodosUseCase, delegate: nil)
-        let viewController = UIHostingController(rootView: TodosView(viewModel: todosViewModel))
+        let view = makeTodosView(getTodosSource: getTodosSource, delegate: nil)
+        let viewController = UIHostingController(rootView: view)
         return viewController
     }
     
+    func makeTodosView(getTodosSource: TodosDataSource, delegate: TodosViewActions?) -> TodosView {
+        let getTodosUseCase = GetTodosUseCase(todosDataSource: getTodosSource)
+        let todosViewModel = TodosViewModel(getTodosUseCase: getTodosUseCase, delegate: delegate)
+        let view = TodosView(viewModel: todosViewModel)
+        return view
+    }
+    
     func makeTodoDetails(with todo: Todo) -> UIViewController {
-//        let detailsViewModel = TodoDetailsViewModel(todo: todo)
-//        let viewController = TodoDetailsViewController(viewModel: detailsViewModel)
-//        return viewController
-        UIViewController()
+        let view = makeTodoDetailsView(with: todo)
+        let viewController = UIHostingController(rootView: view)
+        return viewController
+    }
+    
+    func makeTodoDetailsView(with todo: Todo) -> TodoDetailsView {
+        let detailsViewModel = TodoDetailsViewModel(todo: todo)
+        let view = TodoDetailsView(viewModel: detailsViewModel)
+        return view
     }
 }

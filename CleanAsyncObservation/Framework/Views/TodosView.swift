@@ -34,11 +34,11 @@ struct TodosView: View {
 }
 
 #Preview {
+    let factory = HomeFactoryImp()
     let todo = Todo(userId: 1, id: 1, title: "Hello", completed: false)
     let todosDataSource = TodosDataSourceStub(result: .success([todo]))
-    let getTodosUseCase = GetTodosUseCase(todosDataSource: todosDataSource)
-    let todosViewModel = TodosViewModel(getTodosUseCase: getTodosUseCase, delegate: nil)
-    NavigationView {
-        TodosView(viewModel: todosViewModel)
+    let view = factory.makeTodosView(getTodosSource: todosDataSource, delegate: nil)
+    return NavigationView {
+        view
     }
 }
