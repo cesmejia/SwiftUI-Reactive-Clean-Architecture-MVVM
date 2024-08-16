@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C6E03EC2C6FDB1A0028486E /* CleanAsyncObservation.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CleanAsyncObservation.xctestplan; sourceTree = "<group>"; };
 		9C948D732C6FD9A7001AA0D2 /* CleanAsyncObservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanAsyncObservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C948D892C6FD9A8001AA0D2 /* CleanAsyncObservationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanAsyncObservationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C948D932C6FD9A8001AA0D2 /* CleanAsyncObservationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanAsyncObservationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +103,7 @@
 		9C948D6A2C6FD9A7001AA0D2 = {
 			isa = PBXGroup;
 			children = (
+				9C6E03EC2C6FDB1A0028486E /* CleanAsyncObservation.xctestplan */,
 				9C948D752C6FD9A7001AA0D2 /* CleanAsyncObservation */,
 				9C948D8C2C6FD9A8001AA0D2 /* CleanAsyncObservationTests */,
 				9C948D962C6FD9A8001AA0D2 /* CleanAsyncObservationUITests */,
@@ -319,7 +321,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cesmejia.CleanAsyncObservation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -347,7 +350,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cesmejia.CleanAsyncObservation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -412,6 +416,8 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -467,6 +473,8 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -484,7 +492,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cesmejia.CleanAsyncObservationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanAsyncObservation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CleanAsyncObservation";
 			};
@@ -503,7 +512,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cesmejia.CleanAsyncObservationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanAsyncObservation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CleanAsyncObservation";
 			};
@@ -520,7 +530,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cesmejia.CleanAsyncObservationUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CleanAsyncObservation;
 			};
@@ -537,7 +548,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cesmejia.CleanAsyncObservationUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CleanAsyncObservation;
 			};

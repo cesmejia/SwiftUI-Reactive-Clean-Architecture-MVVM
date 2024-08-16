@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "AC7E41D4-9B10-45D5-952B-804C2233E418",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CleanAsyncObservation.xcodeproj",
+      "identifier" : "9C948D722C6FD9A7001AA0D2",
+      "name" : "CleanAsyncObservation"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:CleanAsyncObservation.xcodeproj",
+        "identifier" : "9C948D882C6FD9A8001AA0D2",
+        "name" : "CleanAsyncObservationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CleanAsyncObservation.xcodeproj",
+        "identifier" : "9C948D922C6FD9A8001AA0D2",
+        "name" : "CleanAsyncObservationUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
