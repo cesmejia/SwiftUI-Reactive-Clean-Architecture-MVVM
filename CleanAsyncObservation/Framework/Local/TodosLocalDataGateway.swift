@@ -9,12 +9,23 @@ import Foundation
 
 class TodosLocalDataGateway: TodosLocalDataSource {
     let todosDatabase: TodosDatabase
+    let todosMemoryDatabase: TodosDatabase
 
-    init(todosDatabase: TodosDatabase) {
+    init(
+        todosDatabase: TodosDatabase,
+        todosMemoryDatabase: TodosDatabase
+    ) {
         self.todosDatabase = todosDatabase
+        self.todosMemoryDatabase = todosMemoryDatabase
     }
     
     func queryTodos() async throws(LocalDataSourceError) -> [Todo] {
-        return try await todosDatabase.queryTodos()
+        let memoryTodos = try await todosMemoryDatabase.queryTodos()
+        
+        if memoryTodos.isEmpty {
+            return try await todosDatabase.queryTodos()
+        }
+        
+        return memoryTodos
     }
 }

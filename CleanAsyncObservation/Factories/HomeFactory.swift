@@ -16,9 +16,17 @@ protocol HomeFactory {
 struct HomeFactoryImp: HomeFactory {
     func makeModule(delegate: TodosViewActions?) -> UIViewController {
         let todosService = TodosServiceImp()
-        let todosDatabase = TodosMemoryDatabaseImp()
-        let todosDataSourceRemote = TodosRemoteDataGateway(todosService: todosService, todosDatabase: todosDatabase)
-        let todosDataSourceLocal = TodosLocalDataGateway(todosDatabase: todosDatabase)
+        let todosDatabase = TodosDatabaseImp()
+        let todosMemoryDatabase = TodosMemoryDatabaseImp()
+        let todosDataSourceRemote = TodosRemoteDataGateway(
+            todosService: todosService,
+            todosDatabase: todosDatabase,
+            todosMemoryDatabase: todosMemoryDatabase
+        )
+        let todosDataSourceLocal = TodosLocalDataGateway(
+            todosDatabase: todosDatabase,
+            todosMemoryDatabase: todosMemoryDatabase
+        )
         let getTodosSource = GetTodosRepository(todosRemoteDataSource: todosDataSourceRemote, todosLocalDataSource: todosDataSourceLocal)
         let view = makeTodosView(getTodosSource: getTodosSource, delegate: delegate)
         let viewController = UIHostingController(rootView: view)
