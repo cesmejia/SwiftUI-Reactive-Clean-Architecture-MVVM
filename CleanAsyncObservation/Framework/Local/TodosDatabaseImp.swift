@@ -20,10 +20,10 @@ class TodosDatabaseImp: TodosDatabase {
     func queryTodos() async throws(LocalDataSourceError) -> [Todo] {
         do {
             let todos = try await loadTodos()
-            logger.info("Succesfully queried TODOs from database: \(todos.count)")
+            logger.info("Succesfully queried TODOs from FileManager database: \(todos.count)")
             return todos
         } catch {
-            logger.error("Error querying TODOs: \(error)")
+            logger.error("Error querying FileManager TODOs: \(error)")
             throw .unknown
         }
     }
@@ -31,9 +31,9 @@ class TodosDatabaseImp: TodosDatabase {
     func updateTodos(with todos: [Todo]) async throws(LocalDataSourceError) {
         do {
             try await save(todos: todos)
-            logger.info("Succesfully updated TODOs: \(todos.count)")
+            logger.info("Succesfully updated FileManager TODOs: \(todos.count)")
         } catch {
-            logger.error("Error updating TODOs: \(error)")
+            logger.error("Error updating FileManager TODOs: \(error)")
             throw .unknown
         }
     }
