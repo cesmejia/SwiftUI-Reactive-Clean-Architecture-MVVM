@@ -23,12 +23,20 @@ struct TodosView: View {
                     }
                 }
                 .buttonStyle(.plain)
-                
             }
         }
         .navigationTitle(viewModel.title)
         .onViewDidLoadTask {
             await viewModel.getTodos()
+        }
+        .toolbar {
+            ToolbarItem {
+                Button(viewModel.toolbarButtonText) {
+                    Task {
+                        await viewModel.refreshTodos()
+                    }
+                }
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ import Combine
     weak var delegate: TodosViewActions?
     
     let title = "Todos"
+    let toolbarButtonText = "Refresh"
     var todos = [Todo]()
     var errorText: String?
     
