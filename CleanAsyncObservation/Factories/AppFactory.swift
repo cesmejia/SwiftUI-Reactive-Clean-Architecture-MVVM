@@ -19,3 +19,16 @@ struct AppFactoryImp: AppFactory {
         return homeCoordinator
     }
 }
+
+@MainActor
+protocol AppTabFactory {
+    func makeHomeTabCoordinator(navigation: UITabBarController) -> TabCoordinator
+}
+
+struct AppTabFactoryImp: AppTabFactory {
+    func makeHomeTabCoordinator(navigation: UITabBarController) -> TabCoordinator {
+        let homeFactory = HomeTabFactoryImp()
+        let homeCoordinator = HomeTabCoordinator(navigation: navigation, homeFactory: homeFactory)
+        return homeCoordinator
+    }
+}

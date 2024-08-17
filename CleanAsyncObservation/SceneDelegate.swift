@@ -10,8 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var appCoordinator: Coordinator!
-    var appFactory: AppFactory!
+    var appCoordinator: TabCoordinator!
+    var appTabFactory: AppTabFactory!
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,10 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
+        
+        let uiTabBarController = UITabBarController()
+        
         let navigationController = UINavigationController()
-        appFactory = AppFactoryImp()
+        appTabFactory = AppTabFactoryImp()
         window = UIWindow(windowScene: scene)
-        appCoordinator = AppCoordinator(navigation: navigationController, appFactory: appFactory, window: window)
+        appCoordinator = AppTabCoordinator(navigation: uiTabBarController, appTabFactory: appTabFactory, window: window)
         appCoordinator.start()
         
         window?.makeKeyAndVisible()

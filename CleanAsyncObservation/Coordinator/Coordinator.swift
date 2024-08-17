@@ -12,3 +12,9 @@ protocol Coordinator {
     var navigation: UINavigationController { get }
     func start()
 }
+
+@MainActor
+protocol TabCoordinator {
+    var navigation: UITabBarController { get }
+    func start()
+}
