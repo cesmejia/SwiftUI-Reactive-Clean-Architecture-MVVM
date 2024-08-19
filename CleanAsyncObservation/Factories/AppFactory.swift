@@ -11,13 +11,11 @@ import UIKit
 protocol AppFactory {
     func makeHomeCoordinator(
         navigation: UINavigationController,
-        tabNavigation: UITabBarController,
         todosDataSource: TodosDataSource
     ) -> Coordinator
     
     func makeCompletedTodosCoordinator(
         navigation: UINavigationController,
-        tabNavigation: UITabBarController,
         todosDataSource: TodosDataSource
     ) -> Coordinator
     
@@ -27,13 +25,11 @@ protocol AppFactory {
 struct AppFactoryImp: AppFactory {
     func makeHomeCoordinator(
         navigation: UINavigationController,
-        tabNavigation: UITabBarController,
         todosDataSource: TodosDataSource
     ) -> Coordinator {
         let homeFactory = HomeFactoryImp()
         let homeCoordinator = HomeCoordinator(
             navigation: navigation,
-            tabNavigation: tabNavigation,
             homeFactory: homeFactory,
             getTodosSource: todosDataSource
         )
@@ -42,13 +38,11 @@ struct AppFactoryImp: AppFactory {
     
     func makeCompletedTodosCoordinator(
         navigation: UINavigationController,
-        tabNavigation: UITabBarController,
         todosDataSource: TodosDataSource
     ) -> Coordinator {
         let completedTodosFactory = CompletedTodosFactoryImp()
         let completedTodosCoordinator = CompletedTodosCoordinator(
             navigation: navigation,
-            tabNavigation: tabNavigation,
             completedTodosFactory: completedTodosFactory,
             todosDataSource: todosDataSource
         )

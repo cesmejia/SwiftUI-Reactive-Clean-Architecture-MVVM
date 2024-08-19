@@ -9,18 +9,15 @@ import UIKit
 
 final class HomeCoordinator: Coordinator {
     let navigation: UINavigationController
-    private let tabNavigation: UITabBarController
     private let homeFactory: HomeFactory
     private let getTodosSource: TodosDataSource
     
     init(
         navigation: UINavigationController,
-        tabNavigation: UITabBarController,
         homeFactory: HomeFactory,
         getTodosSource: TodosDataSource
     ) {
         self.navigation = navigation
-        self.tabNavigation = tabNavigation
         self.homeFactory = homeFactory
         self.getTodosSource = getTodosSource
     }
@@ -28,7 +25,8 @@ final class HomeCoordinator: Coordinator {
     func start() {
         let controller = homeFactory.makeModule(getTodosSource: getTodosSource, delegate: self)
         controller.tabBarItem.title = "Todos"
-        tabNavigation.viewControllers?.append(controller)
+        navigation.navigationBar.prefersLargeTitles = true
+        navigation.pushViewController(controller, animated: true)
     }
     
     private func navigateToDetail(for todo: Todo) {
