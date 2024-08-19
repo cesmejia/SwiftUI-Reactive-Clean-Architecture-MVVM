@@ -9,21 +9,24 @@ import UIKit
 
 final class HomeCoordinator: Coordinator {
     let navigation: UINavigationController
-    let tabNavigation: UITabBarController
+    private let tabNavigation: UITabBarController
     private let homeFactory: HomeFactory
+    private let getTodosSource: TodosDataSource
     
     init(
         navigation: UINavigationController,
         tabNavigation: UITabBarController,
-        homeFactory: HomeFactory
+        homeFactory: HomeFactory,
+        getTodosSource: TodosDataSource
     ) {
         self.navigation = navigation
         self.tabNavigation = tabNavigation
         self.homeFactory = homeFactory
+        self.getTodosSource = getTodosSource
     }
     
     func start() {
-        let controller = homeFactory.makeModule(delegate: self)
+        let controller = homeFactory.makeModule(getTodosSource: getTodosSource, delegate: self)
         controller.tabBarItem.title = "Todos"
         tabNavigation.viewControllers = [controller]
     }

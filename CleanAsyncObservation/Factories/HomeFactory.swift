@@ -9,25 +9,12 @@ import SwiftUI
 
 @MainActor
 protocol HomeFactory {
-    func makeModule(delegate: TodosViewActions?) -> UIViewController
+    func makeModule(getTodosSource: TodosDataSource, delegate: TodosViewActions?) -> UIViewController
     func makeTodoDetails(with todo: Todo) -> UIViewController
 }
 
 struct HomeFactoryImp: HomeFactory {
-    func makeModule(delegate: TodosViewActions?) -> UIViewController {
-        let todosService = TodosServiceImp()
-        let todosDatabase = TodosDatabaseImp()
-        let todosMemoryDatabase = TodosMemoryDatabaseImp()
-        let todosDataSourceRemote = TodosRemoteDataGateway(
-            todosService: todosService,
-            todosDatabase: todosDatabase,
-            todosMemoryDatabase: todosMemoryDatabase
-        )
-        let todosDataSourceLocal = TodosLocalDataGateway(
-            todosDatabase: todosDatabase,
-            todosMemoryDatabase: todosMemoryDatabase
-        )
-        let getTodosSource = GetTodosRepository(todosRemoteDataSource: todosDataSourceRemote, todosLocalDataSource: todosDataSourceLocal)
+    func makeModule(getTodosSource: TodosDataSource, delegate: TodosViewActions?) -> UIViewController {
         let view = makeTodosView(getTodosSource: getTodosSource, delegate: delegate)
         let viewController = UIHostingController(rootView: view)
         return viewController

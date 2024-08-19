@@ -12,6 +12,7 @@ final class AppTabCoordinator: TabCoordinator {
     private let appFactory: AppFactory
     var childCoordinators = [Coordinator]()
     var childNavigationControllers = [UINavigationController]()
+    var todosDataSource: TodosDataSource!
     
     init(navigation: UITabBarController, appFactory: AppFactory, window: UIWindow?) {
         self.tabNavigation = navigation
@@ -20,12 +21,15 @@ final class AppTabCoordinator: TabCoordinator {
     }
     
     func start() {
+        todosDataSource = appFactory.makeTodosDataSource()
+        
         let homeNavigationController = UINavigationController()
         childNavigationControllers.append(homeNavigationController)
         
         let coordinator = appFactory.makeHomeCoordinator(
             navigation: homeNavigationController,
-            tabNavigation: tabNavigation
+            tabNavigation: tabNavigation,
+            todosDataSource: todosDataSource
         )
         childCoordinators.append(coordinator)
         
