@@ -10,10 +10,17 @@ import UIKit
 @MainActor
 protocol AppFactory {
     func makeHomeCoordinator(navigation: UINavigationController, tabNavigation: UITabBarController) -> Coordinator
+    func makeCompletedTodosCoordinator(navigation: UINavigationController, tabNavigation: UITabBarController) -> Coordinator
 }
 
 struct AppFactoryImp: AppFactory {
     func makeHomeCoordinator(navigation: UINavigationController, tabNavigation: UITabBarController) -> Coordinator {
+        let homeFactory = HomeFactoryImp()
+        let homeCoordinator = HomeCoordinator(navigation: navigation, tabNavigation: tabNavigation, homeFactory: homeFactory)
+        return homeCoordinator
+    }
+    
+    func makeCompletedTodosCoordinator(navigation: UINavigationController, tabNavigation: UITabBarController) -> Coordinator {
         let homeFactory = HomeFactoryImp()
         let homeCoordinator = HomeCoordinator(navigation: navigation, tabNavigation: tabNavigation, homeFactory: homeFactory)
         return homeCoordinator

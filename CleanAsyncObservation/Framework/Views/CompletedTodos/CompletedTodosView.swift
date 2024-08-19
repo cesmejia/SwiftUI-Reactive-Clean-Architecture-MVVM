@@ -34,7 +34,7 @@ struct CompletedTodosView: View {
 }
 
 #Preview {
-    let factory = HomeFactoryImp()
+    let factory = CompletedTodosFactoryImp()
     let todo1 = Todo(userId: 1, id: 1, title: "Hello", completed: false)
     let todo2 = Todo(userId: 2, id: 2, title: "Hello", completed: true)
     let todosDataSource = TodosDataSourceStub(result: .success([todo1, todo2]))
