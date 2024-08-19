@@ -30,7 +30,7 @@ final class HomeCoordinator: Coordinator {
     
     private func navigateToDetail(for todo: Todo) {
         let controller = homeFactory.makeTodoDetails(with: todo)
-        navigation.pushViewController(controller, animated: false)
+        navigation.pushViewController(controller, animated: true)
     }
 }
 
