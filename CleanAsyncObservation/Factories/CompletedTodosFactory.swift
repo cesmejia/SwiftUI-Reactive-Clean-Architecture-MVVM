@@ -9,24 +9,11 @@ import SwiftUI
 
 @MainActor
 protocol CompletedTodosFactory {
-    func makeModule(delegate: CompletedTodosViewActions?) -> UIViewController
+    func makeModule(getTodosSource: TodosDataSource, delegate: CompletedTodosViewActions?) -> UIViewController
 }
 
 struct CompletedTodosFactoryImp: CompletedTodosFactory {
-    func makeModule(delegate: CompletedTodosViewActions?) -> UIViewController {
-        let todosService = TodosServiceImp()
-        let todosDatabase = TodosDatabaseImp()
-        let todosMemoryDatabase = TodosMemoryDatabaseImp()
-        let todosDataSourceRemote = TodosRemoteDataGateway(
-            todosService: todosService,
-            todosDatabase: todosDatabase,
-            todosMemoryDatabase: todosMemoryDatabase
-        )
-        let todosDataSourceLocal = TodosLocalDataGateway(
-            todosDatabase: todosDatabase,
-            todosMemoryDatabase: todosMemoryDatabase
-        )
-        let getTodosSource = GetTodosRepository(todosRemoteDataSource: todosDataSourceRemote, todosLocalDataSource: todosDataSourceLocal)
+    func makeModule(getTodosSource: TodosDataSource, delegate: CompletedTodosViewActions?) -> UIViewController {
         let view = makeCompletedTodosView(getTodosSource: getTodosSource, delegate: delegate)
         let viewController = UIHostingController(rootView: view)
         return viewController

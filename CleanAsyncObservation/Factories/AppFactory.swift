@@ -17,7 +17,8 @@ protocol AppFactory {
     
     func makeCompletedTodosCoordinator(
         navigation: UINavigationController,
-        tabNavigation: UITabBarController
+        tabNavigation: UITabBarController,
+        todosDataSource: TodosDataSource
     ) -> Coordinator
     
     func makeTodosDataSource() -> GetTodosRepository
@@ -41,11 +42,17 @@ struct AppFactoryImp: AppFactory {
     
     func makeCompletedTodosCoordinator(
         navigation: UINavigationController,
-        tabNavigation: UITabBarController
+        tabNavigation: UITabBarController,
+        todosDataSource: TodosDataSource
     ) -> Coordinator {
-        let homeFactory = CompletedTodosFactoryImp()
-        let homeCoordinator = CompletedTodosCoordinator(navigation: navigation, tabNavigation: tabNavigation, completedTodosFactory: homeFactory)
-        return homeCoordinator
+        let completedTodosFactory = CompletedTodosFactoryImp()
+        let completedTodosCoordinator = CompletedTodosCoordinator(
+            navigation: navigation,
+            tabNavigation: tabNavigation,
+            completedTodosFactory: completedTodosFactory,
+            todosDataSource: todosDataSource
+        )
+        return completedTodosCoordinator
     }
 }
 

@@ -32,8 +32,18 @@ final class AppTabCoordinator: TabCoordinator {
             todosDataSource: todosDataSource
         )
         childCoordinators.append(coordinator)
-        
         coordinator.start()
+        
+        let completedTodosNavigationController = UINavigationController()
+        childNavigationControllers.append(completedTodosNavigationController)
+        
+        let completedTodosCoordinator = appFactory.makeCompletedTodosCoordinator(
+            navigation: completedTodosNavigationController,
+            tabNavigation: tabNavigation,
+            todosDataSource: todosDataSource
+        )
+        childCoordinators.append(completedTodosCoordinator)
+        completedTodosCoordinator.start()
     }
     
     private func configWindow(window: UIWindow?) {
