@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var appCoordinator: TabCoordinator!
-    var appTabFactory: AppTabFactory!
+    var appFactory: AppFactory!
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -22,10 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let uiTabBarController = UITabBarController()
         
-        let navigationController = UINavigationController()
-        appTabFactory = AppTabFactoryImp()
+        appFactory = AppFactoryImp()
         window = UIWindow(windowScene: scene)
-        appCoordinator = AppTabCoordinator(navigation: uiTabBarController, appTabFactory: appTabFactory, window: window)
+        appCoordinator = AppTabCoordinator(navigation: uiTabBarController, appFactory: appFactory, window: window)
         appCoordinator.start()
         
         window?.makeKeyAndVisible()
