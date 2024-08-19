@@ -24,14 +24,13 @@ final class HomeCoordinator: Coordinator {
     
     func start() {
         let controller = homeFactory.makeModule(getTodosSource: getTodosSource, delegate: self)
-        controller.tabBarItem.title = "Todos"
         navigation.navigationBar.prefersLargeTitles = true
-        navigation.pushViewController(controller, animated: true)
+        navigation.pushViewController(controller, animated: false)
     }
     
     private func navigateToDetail(for todo: Todo) {
         let controller = homeFactory.makeTodoDetails(with: todo)
-        navigation.pushViewController(controller, animated: true)
+        navigation.pushViewController(controller, animated: false)
     }
 }
 

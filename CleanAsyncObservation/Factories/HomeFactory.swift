@@ -17,6 +17,8 @@ struct HomeFactoryImp: HomeFactory {
     func makeModule(getTodosSource: TodosDataSource, delegate: TodosViewActions?) -> UIViewController {
         let view = makeTodosView(getTodosSource: getTodosSource, delegate: delegate)
         let viewController = UIHostingController(rootView: view)
+        viewController.title = "Todos"
+        viewController.tabBarItem.image = UIImage(systemName: "checklist")
         return viewController
     }
     

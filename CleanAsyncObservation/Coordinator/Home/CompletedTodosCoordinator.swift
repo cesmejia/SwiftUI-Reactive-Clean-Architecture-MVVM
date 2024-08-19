@@ -24,9 +24,8 @@ final class CompletedTodosCoordinator: Coordinator {
     
     func start() {
         let controller = completedTodosFactory.makeModule(getTodosSource: todosDataSource, delegate: self)
-        controller.tabBarItem.title = "Completed Todos"
         navigation.navigationBar.prefersLargeTitles = true
-        navigation.pushViewController(controller, animated: true)
+        navigation.pushViewController(controller, animated: false)
     }
 }
 

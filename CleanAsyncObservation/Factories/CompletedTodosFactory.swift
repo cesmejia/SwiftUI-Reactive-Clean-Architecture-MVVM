@@ -16,6 +16,8 @@ struct CompletedTodosFactoryImp: CompletedTodosFactory {
     func makeModule(getTodosSource: TodosDataSource, delegate: CompletedTodosViewActions?) -> UIViewController {
         let view = makeCompletedTodosView(getTodosSource: getTodosSource, delegate: delegate)
         let viewController = UIHostingController(rootView: view)
+        viewController.title = "Completed Todos"
+        viewController.tabBarItem.image = UIImage(systemName: "checklist.checked")
         return viewController
     }
     

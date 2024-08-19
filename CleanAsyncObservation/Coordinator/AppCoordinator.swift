@@ -43,7 +43,7 @@ final class AppTabCoordinator: TabCoordinator {
         childCoordinators.append(completedTodosCoordinator)
         completedTodosCoordinator.start()
         
-        tabNavigation.setViewControllers(childNavigationControllers, animated: true)
+        tabNavigation.setViewControllers(childNavigationControllers, animated: false)
     }
     
     private func configWindow(window: UIWindow?) {
