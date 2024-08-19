@@ -38,7 +38,8 @@ struct CompletedTodosView: View {
     let todo1 = Todo(userId: 1, id: 1, title: "Hello", completed: false)
     let todo2 = Todo(userId: 2, id: 2, title: "Hello", completed: true)
     let todosDataSource = TodosDataSourceStub(result: .success([todo1, todo2]))
-    let view = factory.makeCompletedTodosView(getTodosSource: todosDataSource, delegate: nil)
+    let getTodosUseCase = GetTodosUseCase(todosDataSource: todosDataSource)
+    let view = factory.makeCompletedTodosView(getTodosUseCase: getTodosUseCase, delegate: nil)
     return NavigationView {
         view
     }

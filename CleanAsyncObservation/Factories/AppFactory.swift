@@ -11,60 +11,61 @@ import UIKit
 protocol AppFactory {
     func makeHomeCoordinator(
         navigation: UINavigationController,
-        todosDataSource: TodosDataSource
+        getTodosUseCase: GetTodosUseCase
     ) -> Coordinator
     
     func makeCompletedTodosCoordinator(
         navigation: UINavigationController,
-        todosDataSource: TodosDataSource
+        getTodosUseCase: GetTodosUseCase
     ) -> Coordinator
     
-    func makeTodosDataSource() -> GetTodosRepository
+    func makeTodosUseCase() -> GetTodosUseCase
 }
 
 struct AppFactoryImp: AppFactory {
     func makeHomeCoordinator(
         navigation: UINavigationController,
-        todosDataSource: TodosDataSource
+        getTodosUseCase: GetTodosUseCase
     ) -> Coordinator {
         let homeFactory = HomeFactoryImp()
         let homeCoordinator = HomeCoordinator(
             navigation: navigation,
             homeFactory: homeFactory,
-            getTodosSource: todosDataSource
+            getTodosUseCase: getTodosUseCase
         )
         return homeCoordinator
     }
     
     func makeCompletedTodosCoordinator(
         navigation: UINavigationController,
-        todosDataSource: TodosDataSource
+        getTodosUseCase: GetTodosUseCase
     ) -> Coordinator {
         let completedTodosFactory = CompletedTodosFactoryImp()
         let completedTodosCoordinator = CompletedTodosCoordinator(
             navigation: navigation,
             completedTodosFactory: completedTodosFactory,
-            todosDataSource: todosDataSource
+            getTodosUseCase: getTodosUseCase
         )
         return completedTodosCoordinator
     }
 }
 
 extension AppFactoryImp {
-    func makeTodosDataSource() -> GetTodosRepository {
+    func makeTodosUseCase() -> GetTodosUseCase {
         let todosService = TodosServiceImp()
         let todosDatabase = TodosDatabaseImp()
         let todosMemoryDatabase = TodosMemoryDatabaseImp()
-        let todosDataSourceRemote = TodosRemoteDataGateway(
+        let getTodosUseCaseRemote = TodosRemoteDataGateway(
             todosService: todosService,
             todosDatabase: todosDatabase,
             todosMemoryDatabase: todosMemoryDatabase
         )
-        let todosDataSourceLocal = TodosLocalDataGateway(
+        let getTodosUseCaseLocal = TodosLocalDataGateway(
             todosDatabase: todosDatabase,
             todosMemoryDatabase: todosMemoryDatabase
         )
-        let getTodosSource = GetTodosRepository(todosRemoteDataSource: todosDataSourceRemote, todosLocalDataSource: todosDataSourceLocal)
-        return getTodosSource
+        let getTodosSource = GetTodosRepository(todosRemoteDataSource: getTodosUseCaseRemote, todosLocalDataSource: getTodosUseCaseLocal)
+        let getTodosUseCase = GetTodosUseCase(todosDataSource: getTodosSource)
+        return getTodosUseCase
     }
 }

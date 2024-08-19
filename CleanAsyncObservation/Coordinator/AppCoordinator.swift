@@ -12,7 +12,7 @@ final class AppTabCoordinator: TabCoordinator {
     private let appFactory: AppFactory
     var childCoordinators = [Coordinator]()
     var childNavigationControllers = [UINavigationController]()
-    var todosDataSource: TodosDataSource!
+    var getTodosUseCase: GetTodosUseCase!
     
     init(navigation: UITabBarController, appFactory: AppFactory, window: UIWindow?) {
         self.tabNavigation = navigation
@@ -21,14 +21,14 @@ final class AppTabCoordinator: TabCoordinator {
     }
     
     func start() {
-        todosDataSource = appFactory.makeTodosDataSource()
+        getTodosUseCase = appFactory.makeTodosUseCase()
         
         let homeNavigationController = UINavigationController()
         childNavigationControllers.append(homeNavigationController)
         
         let coordinator = appFactory.makeHomeCoordinator(
             navigation: homeNavigationController,
-            todosDataSource: todosDataSource
+            getTodosUseCase: getTodosUseCase
         )
         childCoordinators.append(coordinator)
         coordinator.start()
@@ -38,7 +38,7 @@ final class AppTabCoordinator: TabCoordinator {
         
         let completedTodosCoordinator = appFactory.makeCompletedTodosCoordinator(
             navigation: completedTodosNavigationController,
-            todosDataSource: todosDataSource
+            getTodosUseCase: getTodosUseCase
         )
         childCoordinators.append(completedTodosCoordinator)
         completedTodosCoordinator.start()

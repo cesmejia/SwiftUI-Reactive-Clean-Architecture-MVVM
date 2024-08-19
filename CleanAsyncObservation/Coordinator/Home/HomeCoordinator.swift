@@ -10,20 +10,20 @@ import UIKit
 final class HomeCoordinator: Coordinator {
     let navigation: UINavigationController
     private let homeFactory: HomeFactory
-    private let getTodosSource: TodosDataSource
+    private let getTodosUseCase: GetTodosUseCase
     
     init(
         navigation: UINavigationController,
         homeFactory: HomeFactory,
-        getTodosSource: TodosDataSource
+        getTodosUseCase: GetTodosUseCase
     ) {
         self.navigation = navigation
         self.homeFactory = homeFactory
-        self.getTodosSource = getTodosSource
+        self.getTodosUseCase = getTodosUseCase
     }
     
     func start() {
-        let controller = homeFactory.makeModule(getTodosSource: getTodosSource, delegate: self)
+        let controller = homeFactory.makeModule(getTodosUseCase: getTodosUseCase, delegate: self)
         navigation.navigationBar.prefersLargeTitles = true
         navigation.pushViewController(controller, animated: false)
     }

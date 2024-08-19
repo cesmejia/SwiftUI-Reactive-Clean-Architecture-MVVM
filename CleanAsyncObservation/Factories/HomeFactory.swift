@@ -9,21 +9,20 @@ import SwiftUI
 
 @MainActor
 protocol HomeFactory {
-    func makeModule(getTodosSource: TodosDataSource, delegate: TodosViewActions?) -> UIViewController
+    func makeModule(getTodosUseCase: GetTodosUseCase, delegate: TodosViewActions?) -> UIViewController
     func makeTodoDetails(with todo: Todo) -> UIViewController
 }
 
 struct HomeFactoryImp: HomeFactory {
-    func makeModule(getTodosSource: TodosDataSource, delegate: TodosViewActions?) -> UIViewController {
-        let view = makeTodosView(getTodosSource: getTodosSource, delegate: delegate)
+    func makeModule(getTodosUseCase: GetTodosUseCase, delegate: TodosViewActions?) -> UIViewController {
+        let view = makeTodosView(getTodosUseCase: getTodosUseCase, delegate: delegate)
         let viewController = UIHostingController(rootView: view)
         viewController.title = "Todos"
         viewController.tabBarItem.image = UIImage(systemName: "checklist")
         return viewController
     }
     
-    func makeTodosView(getTodosSource: TodosDataSource, delegate: TodosViewActions?) -> TodosView {
-        let getTodosUseCase = GetTodosUseCase(todosDataSource: getTodosSource)
+    func makeTodosView(getTodosUseCase: GetTodosUseCase, delegate: TodosViewActions?) -> TodosView {
         let todosViewModel = TodosViewModel(getTodosUseCase: getTodosUseCase, delegate: delegate)
         let view = TodosView(viewModel: todosViewModel)
         return view

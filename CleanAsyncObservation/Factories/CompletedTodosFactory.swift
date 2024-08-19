@@ -9,20 +9,19 @@ import SwiftUI
 
 @MainActor
 protocol CompletedTodosFactory {
-    func makeModule(getTodosSource: TodosDataSource, delegate: CompletedTodosViewActions?) -> UIViewController
+    func makeModule(getTodosUseCase: GetTodosUseCase, delegate: CompletedTodosViewActions?) -> UIViewController
 }
 
 struct CompletedTodosFactoryImp: CompletedTodosFactory {
-    func makeModule(getTodosSource: TodosDataSource, delegate: CompletedTodosViewActions?) -> UIViewController {
-        let view = makeCompletedTodosView(getTodosSource: getTodosSource, delegate: delegate)
+    func makeModule(getTodosUseCase: GetTodosUseCase, delegate: CompletedTodosViewActions?) -> UIViewController {
+        let view = makeCompletedTodosView(getTodosUseCase: getTodosUseCase, delegate: delegate)
         let viewController = UIHostingController(rootView: view)
         viewController.title = "Completed Todos"
         viewController.tabBarItem.image = UIImage(systemName: "checklist.checked")
         return viewController
     }
     
-    func makeCompletedTodosView(getTodosSource: TodosDataSource, delegate: CompletedTodosViewActions?) -> CompletedTodosView {
-        let getTodosUseCase = GetTodosUseCase(todosDataSource: getTodosSource)
+    func makeCompletedTodosView(getTodosUseCase: GetTodosUseCase, delegate: CompletedTodosViewActions?) -> CompletedTodosView {
         let completedTodosViewModel = CompletedTodosViewModel(getTodosUseCase: getTodosUseCase, delegate: delegate)
         let view = CompletedTodosView(viewModel: completedTodosViewModel)
         return view

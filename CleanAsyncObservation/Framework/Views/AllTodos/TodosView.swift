@@ -45,7 +45,8 @@ struct TodosView: View {
     let factory = HomeFactoryImp()
     let todo = Todo(userId: 1, id: 1, title: "Hello", completed: false)
     let todosDataSource = TodosDataSourceStub(result: .success([todo]))
-    let view = factory.makeTodosView(getTodosSource: todosDataSource, delegate: nil)
+    let getTodosUseCase = GetTodosUseCase(todosDataSource: todosDataSource)
+    let view = factory.makeTodosView(getTodosUseCase: getTodosUseCase, delegate: nil)
     return NavigationView {
         view
     }
