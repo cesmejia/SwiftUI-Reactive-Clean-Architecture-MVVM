@@ -23,7 +23,9 @@ class TodosLocalDataGateway: TodosLocalDataSource {
         let memoryTodos = try await todosMemoryDatabase.queryTodos()
         
         if memoryTodos.isEmpty {
-            return try await todosDatabase.queryTodos()
+            let databaseTodos = try await todosDatabase.queryTodos()
+            try? await todosMemoryDatabase.updateTodos(with: databaseTodos)
+            return databaseTodos
         }
         
         return memoryTodos
