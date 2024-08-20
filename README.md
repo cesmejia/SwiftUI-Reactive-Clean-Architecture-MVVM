@@ -45,7 +45,7 @@ This is a very basic project to serve as guide for a tested Clean Architecture a
 ### Discussion:
 - **Why UIKit?** I tried using pure SwiftUI but the Composition Root + SwiftUI Tab Navigation escalated the complexity quickly.
 - **Why CurrentValueSubject?** Using it versus PassthroughSubject made simple unit test possible by using the .value parameter. But you could use PassthroughSubject without much issue.
-- **Why Combine?** I tried using pure Async/Await (AsyncStream) or Observation or Combune but Main Thread issues and Protocol handling escalated the complexity quickly.
+- **Why Combine?** I tried using pure Async/Await (AsyncStream) or Observation or Combine-@Published but Main Thread issues and Protocol handling escalated the complexity quickly.
 
 ### Useful resources that made this possible:
 
