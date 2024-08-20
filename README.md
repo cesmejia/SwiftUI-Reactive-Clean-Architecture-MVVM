@@ -39,6 +39,11 @@ This is a very basic project to serve as guide for a tested Clean Architecture a
 - I might add some more use cases and features in the near future.
 - TODO entity was used throughout the app for simplification sake. True modularity would be achieved by mapping it between layers.
 
+### Discussion:
+- **Why UIKit?** I tried using pure SwiftUI but the Composition Root + SwiftUI Tab Navigation escalated the complexity quickly.
+- **Why CurrentValueSubject?** Using it versus PassthroughSubject made simple unit test possible by using the .value parameter. But you could use PassthroughSubject without much issue.
+- **Why Combine?** I tried using pure Async/Await (AsyncStream) or Observation or Combune but Main Thread issues and Protocol handling escalated the complexity quickly.
+
 ### Useful resources that made this possible:
 
 - Essential developer course: [Essential Developer](https://www.essentialdeveloper.com)
