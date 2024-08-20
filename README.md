@@ -1,8 +1,10 @@
-# SwiftUI-Clean-Architecture-example-with-unit-tests
+# SwiftUI Reactive Clean Architecture using MVVM with Unit Tests
 
 This is a simple project that gets a TODO list from the network, stores it within Filemanager, creates a memory cache and shows it in a SwiftUI list.
 The project has 3 screens and it leverages Combine, Observation and async/await to reactively update every screen from a single source of truth.
 This project leverages all the latest 2024 Apple technologies.
+
+This project can be used as a template for Enterprise grade projects
 
 Note: An older version of this project (without reactivity and with a single coordinator) can be found here: https://github.com/cesmejia/SwiftUI-Clean-Architecture-example-with-unit-tests.git
 
