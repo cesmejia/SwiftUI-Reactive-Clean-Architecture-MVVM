@@ -22,6 +22,7 @@ The project was developed with the following concepts in mind:
 - ``Repository Pattern``
 - ``Use Cases``
 - ``Reactivity: Combine CurrentValueSubject + Observation Framework``
+- ``Communication with Composition Root: Via Delegates (Closures could be used too)``
 - ``Async Await + Typed Throws``
 - ``Swift 6 + Complete Strict Concurrency Checking``
 - ``Dependency Injection``
