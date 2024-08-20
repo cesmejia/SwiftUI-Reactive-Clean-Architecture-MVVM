@@ -15,7 +15,7 @@ The project was developed with the following concepts in mind:
 - ``No external libraries``
 - ``SOLID principles``
 - ``Clean Architecture``
-- ``MVVM Architecture``
+- ``MVVM Architecture pattern``
 - ``Use of Composition root``
 - ``Coordinator Pattern: Uses UIKit UINavigationController + UITabBarController + UIHostingController for navigation``
 - ``Factory Pattern``
