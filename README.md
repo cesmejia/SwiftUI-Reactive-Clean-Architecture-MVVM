@@ -4,6 +4,8 @@ This is a simple project that gets a TODO list from the network, stores it withi
 The project has 3 screens and it leverages Combine, Observation and async/await to reactively update every screen from a single source of truth.
 This project leverages all the latest 2024 Apple technologies.
 
+Note: An older version of this project (without reactivity and with a single coordinator) can be found here: https://github.com/cesmejia/SwiftUI-Clean-Architecture-example-with-unit-tests.git
+
 ## Overview
 
 The project was developed with the following concepts in mind:
